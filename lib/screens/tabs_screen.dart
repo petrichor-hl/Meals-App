@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
 import '../models/meal.dart';
 import '../widgets/main_drawer.dart';
@@ -48,23 +47,20 @@ class _TabsScreenState extends State<TabsScreen> {
       ),
       body: _pages[_selectedPageIndex]["page"] as Widget,
       drawer: const MainDrawer(),
-      bottomNavigationBar: CurvedNavigationBar(
-        color: Theme.of(context).primaryColor,
-        buttonBackgroundColor: Colors.green,
-        backgroundColor: Theme.of(context).canvasColor,
-        animationDuration: const Duration(milliseconds: 400),
-        height: 60,
-        onTap: _selectPage,
+      bottomNavigationBar: BottomNavigationBar(
+        iconSize: 35,
         items: const [
-          Icon(
-            Icons.category,
-            color: Colors.white,
+          BottomNavigationBarItem(
+            icon: Icon(Icons.category),
+            label: 'Categories',
           ),
-          Icon(
-            Icons.star,
-            color: Colors.white,
+          BottomNavigationBarItem(
+            icon: Icon(Icons.star),
+            label: 'Favorites',
           ),
         ],
+        onTap: _selectPage,
+        currentIndex: _selectedPageIndex,
       ),
     );
   }
